@@ -1,0 +1,263 @@
+<body>
+   <div class="page-bg"></div>
+
+   <div class="animation-wrapper">
+      <div class="particle particle-1"></div>
+      <div class="particle particle-2"></div>
+      <div class="particle particle-3"></div>
+      <div class="particle particle-4"></div>
+   </div>
+
+   <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #020024;">
+      <a class="navbar-brand" href="/home">Movie Journal</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+         <span class="navbar-toggler-icon"></span>
+      </button>
+
+
+      <div class="collapse navbar-collapse">
+         <ul class="navbar-nav mr-auto">
+            <li class="nav-item dropdown">
+               <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  Genre
+               </a>
+               <div id="navbarDropdownMenu" class="dropdown-menu" aria-labelledby="navbarDropdown">
+               </div>
+            </li>
+            <li class="nav-item">
+               <a class="nav-link" href="/topratedmovies">Top Rated Movies</a>
+            </li>
+            <li class="nav-item">
+               <a class="nav-link" href="/upcomingmovies">Upcoming movies</a>
+            </li>
+         </ul>
+
+         <ul class="navbar-right">
+            <li class="nav-item dropdown">
+               <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+                  Profile
+               </a>
+               <ul class="dropdown-menu">
+                  <li><a href="/profile">My Movie Journal</a></li>
+                  <li>
+                     <a href="/logout">Logout</a></li>
+               </ul>
+            </li>
+
+         </ul>
+
+      </div>
+   </nav>
+
+   <div class="container" style="position: relative;">
+      <div style="text-align:right; " class="row">
+         <div class="col-xs-6">
+            <i style="text-align:center; font-size: 15rem; color: rgba(255, 255, 255, 0.589);" class="ace-icon fa fa-user"></i>
+         </div>
+         <div style="text-align:left;" class="col-xs-6">
+            <h1 style="color: rgba(255, 255, 255, 0.589);">
+               {{data.name}}
+            </h1>
+            <h1 style="color: rgba(255, 255, 255, 0.589);">
+               {{data.email}}
+            </h1>
+            <h1 style="color: rgba(255, 255, 255, 0.589);">
+               Number of Reviews: 3
+            </h1>
+            <!-- Button trigger modal -->
+            <button type="button" class="btn btn-primary" id="editprofile" name="editprofile" data-toggle="modal" data-target="#exampleModal">
+               Edit Profile
+            </button>
+
+            <!-- Modal -->
+            <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+               <div class="modal-dialog" role="document">
+                  <div class="modal-content">
+                     <form class="" action="/profile" method="post">
+                        <div class="modal-header">
+                           <h5 class="modal-title" id="exampleModalLabel">Edit Profile</h5>
+                           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                              <span aria-hidden="true">&times;</span>
+                           </button>
+                        </div>
+                        <div class="modal-body">
+                           <label for="exampleInputUsername1">New Username</label>
+                           <input type="Text" name="username" class="form-control mb-2" id="exampleInputUsername1" placeholder="Username">
+                           <div id="invalid-feedback" style="font-size: 12px; padding-bottom:10px;"></div>
+                           <label for="exampleInputEmail1">New Email</label>
+                           <input type="Email" name="email" class="form-control mb-2" id="exampleInputEmail1" placeholder="Email">
+                           <div id="invalid-feedback1" style="font-size: 12px; padding-bottom:10px;"></div>
+                           <label for="exampleInputPassword1">New Password</label>
+                           <input type="password" name="password" class="form-control mb-2" id="exampleInputPassword1" placeholder="New Password">
+                           <div id="invalid-feedback2" style="font-size: 12px; padding-bottom:10px;"></div>
+                           <label for="exampleInputPassword2">Confirm Password</label>
+                           <input type="password" class="form-control mb-2" id="exampleInputPassword2" placeholder="Confirm Password">
+                           <div id="invalid-feedback3" style="font-size: 12px; padding-bottom:10px;"></div>
+                        </div>
+                        <div class="modal-footer">
+                           <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                           <button type="submit" class="btn btn-primary" onclick="profileValidation();">Save changes</button>
+                        </div>
+                     </form>
+                  </div>
+               </div>
+            </div>
+
+            <!-- Modal for new list-->
+            <div class="modal fade" id="listModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+               <div class="modal-dialog" role="document">
+                  <div class="modal-content">
+                     <form class="newList" action="/newlist" method="post">
+                        <div class="modal-header">
+                           <h5 class="modal-title" id="exampleModalLabel">Create new list</h5>
+                           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                              <span aria-hidden="true">&times;</span>
+                           </button>
+                        </div>
+                        <div class="modal-body">
+                           <label for="newList">Enter list name:</label>
+                           <input type="Text" name="newlist" class="form-control mb-2" id="newList" placeholder="Example" required>
+                           <div id="no-list" style="font-size: 12px; padding-bottom:10px;"></div>
+                        </div>
+                        <div class="modal-footer">
+                           <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                           <button type="submit" class="btn btn-primary" onclick="validatelist();">Save changes</button>
+                        </div>
+                     </form>
+                  </div>
+               </div>
+            </div>
+
+
+         </div>
+      </div>
+   </div>
+   <br>
+   <div class="container">
+      <div id="my-movies-2" class="my-movies">
+         <div class="tabbable">
+            <ul class="nav nav-tabs padding-18">
+               <li class="active">
+                  <a data-toggle="tab" href="#mymovies"><i class="ace-icon fa fa-user bigger-120"></i> My Movies </a>
+               </li>
+
+               <li>
+                  <a data-toggle="tab" href="#reviews"><i class="ace-icon fa fa-rss bigger-120"></i> Reviews</a>
+               </li>
+
+               <li>
+                  <a data-toggle="tab" href="#watchlist"><i class="ace-icon fa fa-users bigger-120"></i> Watchlist</a>
+               </li>
+
+               <li>
+                  <a data-toggle="tab" href="#lists"><i class="ace-icon fa fa-users bigger-120"></i> List</a>
+               </li>
+            </ul>
+
+            <div class="tab-content no-border padding-24">
+               <div id="mymovies" class="tab-pane in active">
+                  <!--<p class="h1 text-center">put movies watched here, just like upcomingmovies</p>-->
+
+
+                  <!--We wanted to reuse the same layout/style of the other pages to make it look more familiar.
+                Of course it doesn't have to point to the Upcoming movies, but it will show the paeson movies
+              -->
+                  <div id="movie-display">
+                     <div class="container">
+                        <div class="row">
+                           <div class="genreLabel">
+                              <h1 id="movieGenreLabel"></h1>
+                           </div>
+                           <div id="movie-grid">
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+
+               </div>
+
+               <div id="reviews" class="tab-pane">
+
+                  {{#each reviews}}
+                  <div class="card-deck my-3 mr-1 col-4" style="float: left;">
+                     <div class="card">
+                        <img class="card-img-top" src="{{this.poster}}" alt="Card image cap" style="width: 250px;">
+                        <div class="card-body">
+                           <h5 class="card-title">{{this.movietitle}}</h5>
+                           <p class="card-text">{{this.comment}}</p>
+                           <p class="card-text"><small class="text-muted">Rating: </small> {{this.rating}}/5 </p>
+                        </div>
+                     </div>
+
+                  </div>
+
+                  {{/each}}
+
+
+               </div>
+
+               <div id="mymovies" class="tab-pane">
+
+               </div>
+
+               <div id="watchlist" class="tab-pane">
+
+                  <div id="movie-display">
+                  	<div class="container">
+                  		<div class="row">
+                  			<div class="genreLabel">
+                  				<h1 id="movieGenreLabel"></h1>
+                           </div>
+                  				<div id="movie-grid">
+
+                                 {{#each movies}}
+
+                                 <div class="col-sm-4 eachMovie">
+                                    <button type="button" class="btnModal" data-toggle="modal" data-target="#watchlist{{this.id}}" data-whatever="@{{this.id}}">
+                                       <img class="forposters" src="{{this.poster}}">
+                                    </button>
+
+
+                                    <div class="modal fade" id="watchlist{{this.id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                       <div class="modal-dialog" role="document">
+                                          <div class="modal-content col-sm-12" style="display: block; flex-direction: row;">
+                                             <div class="col-sm-6 moviePosterInModal">
+                                                <img src="{{this.poster}}"></a>
+                                             </div>
+                                             <br>
+                                             <div class="col-sm-6 movieDetails style="position: relative;">
+                                                <div class="movieName"><strong>{{this.movietitle}}</strong></div>
+                                                <br>
+                                                <div class="release">Release Date: {{this.releaseDate}}</div>
+                                                <br>
+                                                <div class="overview">{{this.overview}}</div>
+                                                <br>
+                                                <div class="rating">Rating: {{this.vote}}/10</div>
+                                                <br>
+                                             </div>
+                                          </div>
+                                       </div>
+                                    </div>
+                              </div>
+
+                              {{/each}}
+                  			</div>
+                  		</div>
+                  	</div>
+               	</div>
+
+               </div>
+
+               <div id="lists" class="tab-pane">
+                  <button type="button" class="btn btn-primary pull-right mt-3" data-toggle="modal" data-target="#listModal">
+                     Create new list
+                  </button>
+
+
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
+</body>
