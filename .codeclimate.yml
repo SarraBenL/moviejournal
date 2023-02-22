@@ -1,0 +1,13 @@
+version:          "2"
+plugins:
+  nodesecurity:
+    enabled:      true
+  duplication:
+    enabled:      true
+    config:
+      languages:
+      - javascript:
+      - python:
+  fixme:
+    enabled:      true
+   
